@@ -1,7 +1,7 @@
 <template>
-    <li class="appartement__item item">
+    <li class="appartements__item item">
         <div class="item__inner">
-            <img class="item__image" :src="imageSrc" alt="appartement image">
+            <img class="item__image" :src="url" alt="appartement image">
             <div class="item__content">
                 <p class="item__description">{{description}}</p>
                 <div class="item__rating">
@@ -31,7 +31,7 @@ import RatingStars from './RatingStars'
                 type: Number,
                 required: true
             },
-            imageSrc: {
+            url: {
                 type: String,
                 default: ''
             },
@@ -42,32 +42,37 @@ import RatingStars from './RatingStars'
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .item {
-        list-style: none;
         position: relative;
-        max-width: 350px;
-        padding: 0 20px;
+        list-style: none;
 
         &__inner {
             position: relative;
+            width: 100%;
+            height: auto;
         }
 
         &__image {
-            position: absolute;
-            top: 0;
-            left: 0;
+            object-fit: cover;
             width: 100%;
             height: 100%;
         }
 
         &__content {
+            object-fit: fill;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
             cursor: pointer;
-            position: relative;
             line-height: 1.4;
             text-align: center;
             z-index: 1;
-            padding: 20px;
+
             min-height: 200px;
             opacity: 0;
             color: #fff;
@@ -77,6 +82,21 @@ import RatingStars from './RatingStars'
             &:hover {
                 opacity: 1;
             }
+        }
+
+        &__description {
+            margin-bottom: 20px;
+            max-height: calc(1em * 1.4 * 3);
+            overflow: hidden;
+        }
+
+        &__rating {
+            margin-bottom: 20px;
+        }
+
+        &__price {
+            font-size: 20px;
+            font-weight: 600;
         }
     }
 </style>
